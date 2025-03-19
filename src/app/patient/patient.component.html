@@ -1,0 +1,22 @@
+<!-- Header -->
+<div class="bg-blue-600 text-white p-4 flex justify-between items-center rounded-t-lg">
+    <div class="font-bold text-xl">MyHealth Portal</div>
+    <div class="flex items-center space-x-4">
+      <div class="cursor-pointer">Messages</div>
+      <div class="cursor-pointer">James Wilson</div>
+      <img src="assets/images/patient-avatar.png" alt="Patient Avatar" class="w-10 h-10 rounded-full">
+    </div>
+  </div>
+  
+  <!-- Health Summary -->
+  <div class="grid grid-cols-3 gap-4 mb-4">
+    <div *ngFor="let summary of healthSummary" class="bg-white p-4 rounded-lg border border-gray-200">
+      <div class="text-center mb-2">{{ summary.metric }}</div>
+      <div class="flex justify-center">
+        <div class="w-24 h-24 rounded-full border-4 flex items-center justify-center" [ngClass]="summary.borderColor">
+          <div class="text-lg">{{ summary.value }}</div>
+        </div>
+      </div>
+      <div class="text-center mt-2 text-sm" [ngClass]="summary.textColor">{{ summary.status }}</div>
+    </div>
+  </div>

@@ -1,0 +1,37 @@
+<!-- Header -->
+<div class="bg-blue-700 text-white p-4 flex justify-between items-center rounded-t-lg">
+    <div class="font-bold text-xl">HealthAnalytics Pro</div>
+    <div class="flex items-center space-x-4">
+      <div class="cursor-pointer">Notifications</div>
+      <div class="cursor-pointer">Dr. Sarah Johnson</div>
+      <img src="assets/images/doctor-avatar.png" alt="Doctor Avatar" class="w-10 h-10 rounded-full">
+    </div>
+  </div>
+  
+  <!-- Main Content -->
+  <div class="p-4">
+    <!-- Summary Statistics -->
+    <div class="grid grid-cols-4 gap-4 mb-4">
+      <div *ngFor="let stat of stats" class="p-4 rounded-lg border" [ngClass]="stat.bgColor">
+        <div class="text-sm">{{ stat.label }}</div>
+        <div class="text-2xl font-bold">{{ stat.value }}</div>
+      </div>
+    </div>
+  
+    <!-- Patient Risk Stratification -->
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div class="bg-white p-4 rounded-lg border border-gray-200">
+        <div class="font-medium mb-2">Patient Risk Stratification</div>
+        <div class="h-64 bg-gray-100 flex items-center justify-center">
+          <div class="flex space-x-4">
+            <div *ngFor="let risk of riskStratification" class="flex flex-col items-center">
+              <div class="w-24 h-24 rounded-full flex items-center justify-center" [ngClass]="risk.bgColor">
+                <div class="text-xl font-bold">{{ risk.percentage }}%</div>
+              </div>
+              <div class="mt-2">{{ risk.level }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

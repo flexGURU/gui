@@ -1,0 +1,39 @@
+<nav class="bg-blue-800 text-white p-4 shadow-lg">
+  <div class="container mx-auto flex justify-between items-center">
+    <!-- Logo -->
+    <div class="flex items-center space-x-2">
+      <img
+        src="assets/images/health-icon.png"
+        alt="Health Icon"
+        class="w-8 h-8"
+      />
+      <span class="text-xl font-bold">HealthAnalytics Pro</span>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="flex space-x-6">
+      <button
+        (click)="navigateToProvider()"
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md transition duration-300"
+      >
+        Provider Dashboard
+      </button>
+      <button
+        (click)="navigateToPatient()"
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-md transition duration-300"
+      >
+        Patient Dashboard
+      </button>
+    </div>
+
+    <!-- User Avatar -->
+    <div class="flex items-center space-x-4">
+      <div class="cursor-pointer">Welcome, {{ userName }}</div>
+      <img
+        [src]="userAvatar"
+        alt="User Avatar"
+        class="w-10 h-10 rounded-full"
+      />
+    </div>
+  </div>
+</nav>
