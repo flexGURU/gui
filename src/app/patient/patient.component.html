@@ -1,22 +1,118 @@
-<!-- Header -->
-<div class="bg-blue-600 text-white p-4 flex justify-between items-center rounded-t-lg">
-    <div class="font-bold text-xl">MyHealth Portal</div>
-    <div class="flex items-center space-x-4">
-      <div class="cursor-pointer">Messages</div>
-      <div class="cursor-pointer">James Wilson</div>
-      <img src="assets/images/patient-avatar.png" alt="Patient Avatar" class="w-10 h-10 rounded-full">
+<!-- Medication Schedule -->
+<div class="mb-4">
+  <h3 class="text-2xl font-medium mb-2">Medication Schedule</h3>
+  <div class="bg-white p-4 rounded-lg border border-gray-200">
+    <div
+      *ngFor="let medication of medications"
+      class="flex justify-between items-center p-2 border-b border-gray-100"
+    >
+      <div>
+        <div class="font-medium">{{ medication.name }}</div>
+        <div class="text-sm text-gray-600">{{ medication.dosage }}</div>
+      </div>
+      <div class="text-right">
+        <div class="font-medium">{{ medication.time }}</div>
+        <div class="text-sm text-gray-600">{{ medication.frequency }}</div>
+      </div>
+      <div>
+        <button
+          (click)="markAsTaken(medication)"
+          class="bg-blue-500 text-white px-3 py-1 rounded-md text-sm"
+        >
+          Mark as Taken
+        </button>
+      </div>
     </div>
   </div>
-  
-  <!-- Health Summary -->
-  <div class="grid grid-cols-3 gap-4 mb-4">
-    <div *ngFor="let summary of healthSummary" class="bg-white p-4 rounded-lg border border-gray-200">
-      <div class="text-center mb-2">{{ summary.metric }}</div>
-      <div class="flex justify-center">
-        <div class="w-24 h-24 rounded-full border-4 flex items-center justify-center" [ngClass]="summary.borderColor">
-          <div class="text-lg">{{ summary.value }}</div>
+</div>
+
+<!-- Health Trends -->
+<div class="mb-4">
+  <h3 class="text-2xl font-medium mb-2">Health Trends</h3>
+  <div class="bg-white p-4 rounded-lg border border-gray-200">
+    <div class="h-64 bg-gray-100 flex items-center justify-center">
+      <canvas id="healthTrendsChart"></canvas>
+    </div>
+  </div>
+</div>
+
+
+<!-- Recent Lab Results -->
+<div class="mb-4">
+    <h3 class="text-2xl font-medium mb-2">Recent Lab Results</h3>
+    <div class="bg-white p-4 rounded-lg border border-gray-200">
+      <table class="min-w-full">
+        <thead>
+          <tr class="bg-gray-50">
+            <th class="p-2 text-left">Test</th>
+            <th class="p-2 text-left">Result</th>
+            <th class="p-2 text-left">Reference Range</th>
+            <th class="p-2 text-left">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lab of labResults" class="border-t border-gray-200">
+            <td class="p-2">{{ lab.test }}</td>
+            <td class="p-2">{{ lab.result }}</td>
+            <td class="p-2">{{ lab.referenceRange }}</td>
+            <td class="p-2">
+              <span class="px-2 py-1 rounded-full text-xs" [ngClass]="lab.status === 'Normal' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'">
+                {{ lab.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<!-- Health Tips -->
+<div class="flex justify-center">
+    <div class="mb-4">
+        <h3 class="text-2xl font-medium mb-2">Health Tips</h3>
+        <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+          <table class="min-w-full">
+            <thead>
+              <tr class="bg-gray-50">
+                <th class="p-2 text-left text-sm font-medium text-gray-600">Title</th>
+                <th class="p-2 text-left text-sm font-medium text-gray-600">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tip of healthTips" class="border-t border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="p-2 text-sm text-gray-800">{{ tip.title }}</td>
+                <td class="p-2 text-sm text-gray-600">{{ tip.description }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="text-center mt-2 text-sm" [ngClass]="summary.textColor">{{ summary.status }}</div>
-    </div>
-  </div>
+</div>
+
+  <!-- Appointment History -->
+<!-- Appointment History -->
+<div class="flex justify-center">
+    <div class="mb-4 w-3/4">
+        <h3 class="text-2xl font-medium mb-2">Appointment History</h3>
+        <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+          <table class="min-w-full">
+            <thead>
+              <tr class="bg-gray-50">
+                <th class="p-2 text-left text-sm font-medium text-gray-600">Doctor</th>
+                <th class="p-2 text-left text-sm font-medium text-gray-600">Type</th>
+                <th class="p-2 text-left text-sm font-medium text-gray-600">Date</th>
+                <th class="p-2 text-left text-sm font-medium text-gray-600">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let appointment of pastAppointments" class="border-t border-gray-100 hover:bg-gray-50 transition-colors">
+                <td class="p-2 text-sm text-gray-800">{{ appointment.doctor }}</td>
+                <td class="p-2 text-sm text-gray-600">{{ appointment.type }}</td>
+                <td class="p-2 text-sm text-gray-600">{{ appointment.date }}</td>
+                <td class="p-2 text-sm text-gray-600">{{ appointment.time }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>

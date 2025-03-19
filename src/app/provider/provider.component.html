@@ -1,37 +1,226 @@
-<!-- Header -->
-<div class="bg-blue-700 text-white p-4 flex justify-between items-center rounded-t-lg">
-    <div class="font-bold text-xl">HealthAnalytics Pro</div>
-    <div class="flex items-center space-x-4">
-      <div class="cursor-pointer">Notifications</div>
-      <div class="cursor-pointer">Dr. Sarah Johnson</div>
-      <img src="assets/images/doctor-avatar.png" alt="Doctor Avatar" class="w-10 h-10 rounded-full">
-    </div>
-  </div>
-  
-  <!-- Main Content -->
-  <div class="p-4">
-    <!-- Summary Statistics -->
-    <div class="grid grid-cols-4 gap-4 mb-4">
-      <div *ngFor="let stat of stats" class="p-4 rounded-lg border" [ngClass]="stat.bgColor">
-        <div class="text-sm">{{ stat.label }}</div>
-        <div class="text-2xl font-bold">{{ stat.value }}</div>
-      </div>
-    </div>
-  
-    <!-- Patient Risk Stratification -->
-    <div class="grid grid-cols-2 gap-4 mb-4">
-      <div class="bg-white p-4 rounded-lg border border-gray-200">
-        <div class="font-medium mb-2">Patient Risk Stratification</div>
-        <div class="h-64 bg-gray-100 flex items-center justify-center">
-          <div class="flex space-x-4">
-            <div *ngFor="let risk of riskStratification" class="flex flex-col items-center">
-              <div class="w-24 h-24 rounded-full flex items-center justify-center" [ngClass]="risk.bgColor">
-                <div class="text-xl font-bold">{{ risk.percentage }}%</div>
-              </div>
-              <div class="mt-2">{{ risk.level }}</div>
+<div class="container mx-auto p-4">
+    <!-- Healthcare Provider Dashboard -->
+    <div class="mb-8">
+        <h2 class="text-xl font-bold mb-4 text-blue-800">Healthcare Provider Dashboard</h2>
+        <div class="border border-gray-200 rounded-lg shadow-md">
+            <!-- Header -->
+            <div class="bg-blue-700 text-white p-4 flex justify-between items-center rounded-t-lg">
+                <div class="font-bold text-xl">HealthAnalytics Pro</div>
+                <div class="flex items-center space-x-4">
+                    <div class="cursor-pointer">Notifications</div>
+                    <div class="cursor-pointer">Dr. Sarah Johnson</div>
+                    <div class="w-10 h-10 bg-blue-500 rounded-full"></div>
+                </div>
             </div>
-          </div>
+            
+            <!-- Main Layout -->
+            <div class="flex">
+                <!-- Sidebar -->
+                <div class="w-1/6 bg-gray-100 p-4 border-r border-gray-200">
+                    <div class="space-y-4">
+                        <div class="bg-blue-100 p-2 rounded-md text-blue-800 font-medium">Dashboard</div>
+                        <div class="p-2 hover:bg-blue-50 cursor-pointer">Patient List</div>
+                        <div class="p-2 hover:bg-blue-50 cursor-pointer">Analytics</div>
+                        <div class="p-2 hover:bg-blue-50 cursor-pointer">Reports</div>
+                        <div class="p-2 hover:bg-blue-50 cursor-pointer">Settings</div>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="w-5/6 p-4">
+                    <!-- Summary Statistics -->
+                    <div class="grid grid-cols-4 gap-4 mb-4">
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                            <div class="text-sm text-blue-800">Active Patients</div>
+                            <div class="text-2xl font-bold">284</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+                            <div class="text-sm text-green-800">Appointments Today</div>
+                            <div class="text-2xl font-bold">12</div>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-lg border border-amber-100">
+                            <div class="text-sm text-amber-800">Pending Results</div>
+                            <div class="text-2xl font-bold">7</div>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-100">
+                            <div class="text-sm text-red-800">Urgent Cases</div>
+                            <div class="text-2xl font-bold">3</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Charts Row -->
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                            <div class="font-medium mb-2">Patient Risk Stratification</div>
+                            <div class="h-64 bg-gray-100 flex items-center justify-center">
+                                <div class="flex space-x-4">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 rounded-full bg-green-200 flex items-center justify-center">
+                                            <div class="text-xl font-bold">56%</div>
+                                        </div>
+                                        <div class="mt-2">Low Risk</div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 rounded-full bg-amber-200 flex items-center justify-center">
+                                            <div class="text-xl font-bold">28%</div>
+                                        </div>
+                                        <div class="mt-2">Medium Risk</div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 rounded-full bg-red-200 flex items-center justify-center">
+                                            <div class="text-xl font-bold">16%</div>
+                                        </div>
+                                        <div class="mt-2">High Risk</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                            <div class="font-medium mb-2">Clinical Metrics Trend</div>
+                            <div class="h-64 bg-gray-100 flex items-center justify-center">
+                                <div class="w-full h-48 relative">
+                                    <div class="absolute bottom-0 left-0 w-full h-1/2 bg-blue-50"></div>
+                                    <div class="absolute bottom-0 left-0 h-1/3 w-full bg-green-50"></div>
+                                    <div class="absolute bottom-0 left-0 h-1/6 w-full bg-amber-50"></div>
+                                    <div class="absolute bottom-0 left-0 border-t border-blue-400 w-full h-0"></div>
+                                    <div class="absolute bottom-0 left-0 w-full h-36">
+                                        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                            <polyline points="0,70 10,65 20,68 30,60 40,62 50,55 60,50 70,48 80,43 90,45 100,40" 
+                                            stroke="blue" stroke-width="2" fill="none" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Patient List -->
+                    <div class="bg-white p-4 rounded-lg border border-gray-200">
+                        <div class="font-medium mb-2">Priority Patient List</div>
+                        <table class="min-w-full">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="p-2 text-left">Patient Name</th>
+                                    <th class="p-2 text-left">Status</th>
+                                    <th class="p-2 text-left">Last Reading</th>
+                                    <th class="p-2 text-left">Risk Level</th>
+                                    <th class="p-2 text-left">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-t border-gray-200">
+                                    <td class="p-2">John Miller</td>
+                                    <td class="p-2"><span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">Critical</span></td>
+                                    <td class="p-2">BP: 180/110</td>
+                                    <td class="p-2"><span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">High</span></td>
+                                    <td class="p-2"><button class="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">Contact</button></td>
+                                </tr>
+                                <tr class="border-t border-gray-200">
+                                    <td class="p-2">Emily Rogers</td>
+                                    <td class="p-2"><span class="px-2 py-1 bg-amber-100 text-amber-800 rounded-full text-xs">Needs Review</span></td>
+                                    <td class="p-2">Glucose: 210</td>
+                                    <td class="p-2"><span class="px-2 py-1 bg-amber-100 text-amber-800 rounded-full text-xs">Medium</span></td>
+                                    <td class="p-2"><button class="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">Review</button></td>
+                                </tr>
+                                <tr class="border-t border-gray-200">
+                                    <td class="p-2">Robert Chen</td>
+                                    <td class="p-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Stable</span></td>
+                                    <td class="p-2">BP: 118/76</td>
+                                    <td class="p-2"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Low</span></td>
+                                    <td class="p-2"><button class="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+
+    <!-- Patient Dashboard -->
+    <div class="mb-8">
+        <h2 class="text-xl font-bold mb-4 text-blue-800">Patient Dashboard</h2>
+        <div class="border border-gray-200 rounded-lg shadow-md">
+            <!-- Header -->
+            <div class="bg-blue-600 text-white p-4 flex justify-between items-center rounded-t-lg">
+                <div class="font-bold text-xl">MyHealth Portal</div>
+                <div class="flex items-center space-x-4">
+                    <div class="cursor-pointer">Messages</div>
+                    <div class="cursor-pointer">James Wilson</div>
+                    <div class="w-10 h-10 bg-blue-400 rounded-full"></div>
+                </div>
+            </div>
+            
+            <!-- Simplified Navigation -->
+            <div class="bg-white p-2 flex justify-center border-b border-gray-200">
+                <div class="space-x-6 flex">
+                    <div class="px-4 py-2 text-blue-800 border-b-2 border-blue-500 font-medium">Dashboard</div>
+                    <div class="px-4 py-2 text-gray-600 hover:text-blue-800">Appointments</div>
+                    <div class="px-4 py-2 text-gray-600 hover:text-blue-800">Medications</div>
+                    <div class="px-4 py-2 text-gray-600 hover:text-blue-800">Results</div>
+                    <div class="px-4 py-2 text-gray-600 hover:text-blue-800">Messages</div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="p-4">
+                <!-- Health Summary -->
+                <div class="mb-4">
+                    <h3 class="text-lg font-medium mb-2">Your Health Summary</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                            <div class="text-center mb-2">Blood Pressure</div>
+                            <div class="flex justify-center">
+                                <div class="w-24 h-24 rounded-full border-4 border-green-400 flex items-center justify-center">
+                                    <div class="text-lg">120/80</div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-2 text-sm text-green-700">Normal Range</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                            <div class="text-center mb-2">Blood Glucose</div>
+                            <div class="flex justify-center">
+                                <div class="w-24 h-24 rounded-full border-4 border-amber-400 flex items-center justify-center">
+                                    <div class="text-lg">142</div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-2 text-sm text-amber-700">Slightly Elevated</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                            <div class="text-center mb-2">Medication Adherence</div>
+                            <div class="flex justify-center">
+                                <div class="w-24 h-24 rounded-full border-4 border-blue-400 flex items-center justify-center">
+                                    <div class="text-lg">85%</div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-2 text-sm text-blue-700">Last 30 Days</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Appointments -->
+                <div class="mb-4">
+                    <h3 class="text-lg font-medium mb-2">Upcoming Appointments</h3>
+                    <div class="bg-white p-4 rounded-lg border border-gray-200">
+                        <div class="flex justify-between items-center p-2 border-b border-gray-100">
+                            <div>
+                                <div class="font-medium">Dr. Sarah Johnson</div>
+                                <div class="text-sm text-gray-600">General Checkup</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-medium">Mar 22, 2025</div>
+                                <div class="text-sm text-gray-600">10:30 AM</div>
+                            </div>
+                            <div>
+                                <button class="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">Reschedule</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-2">
+                            <div>
+                                <div class="font-medium">Dr. Michael Lee</div>
+                                <div class="text-sm text-gray-600">Diabetes Follow-up</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-medium">Apr 05, 2025</div>
+                                <div class="text-sm text-gray-600">2:15 PM</div>
+                            </div>
